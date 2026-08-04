@@ -40,10 +40,4 @@ This is my 100 Days of Building Cybersecurity Projects challenge — one project
 | 004 | | | | ⬜ Not Started |
 | 005 | | | | ⬜ Not Started |
 
-> Update this table as each day's project is completed. Link the project name to its folder once it's built (e.g. `[Hash Identifier](./day-001-hash-identifier)`).
 
----
-
-## Made possible by
-
-[CertGames](https://certgames.com)
