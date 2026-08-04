@@ -1,2 +1,2 @@
 # CyberSecurity-Projects
-About Building 70 Projects ranging from beginner to advanced daily to improve skills
+Building 70 Projects ranging from beginner to advanced daily to improve skills
