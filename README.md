@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="PASTE_YOUR_UPLOADED_IMAGE_URL_HERE" width="180" alt="Kali dragon icon">
+  <img src="./assets/banner.svg" alt="100 Days of Building Cybersecurity Projects" width="100%">
 </p>
 
 # Cybersecurity Projects 🐉
