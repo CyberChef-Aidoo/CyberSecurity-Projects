@@ -1,10 +1,6 @@
 <p align="center">
-  <img src="./assets/banner.svg" alt="100 Days of Building Cybersecurity Projects" width="100%">
-</p>
-
-# Cybersecurity Projects 🐉
-
-100 Days of Building Cybersecurity Projects — one hands-on security tool built and documented every day.
+  <img src="./assets/banner.svg" alt="100 Days of Building Cybersecurity Projects🐉</p>
+ 
 
 <p align="center">
   <img src="https://img.shields.io/github/stars/CyberChef-Aidoo/CyberSecurity-Projects?style=for-the-badge" alt="stars">
