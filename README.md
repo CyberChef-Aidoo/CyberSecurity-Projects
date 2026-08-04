@@ -3,7 +3,8 @@
 </p>
 
 # Cybersecurity Projects 🐉
-100 days of building Cybersecurity Projects
+
+100 Days of Building Cybersecurity Projects — one hands-on security tool built and documented every day.
 
 <p align="center">
   <img src="https://img.shields.io/github/stars/CyberChef-Aidoo/CyberSecurity-Projects?style=for-the-badge" alt="stars">
@@ -13,8 +14,8 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Cybersecurity-70%20Projects-blue?style=for-the-badge" alt="projects">
-  <img src="https://img.shields.io/badge/Security-Learning%20Resources-darkred?style=for-the-badge" alt="resources">
+  <img src="https://img.shields.io/badge/Day-1%2F100-blue?style=for-the-badge" alt="progress">
+  <img src="https://img.shields.io/badge/Cybersecurity-100%20Days-darkred?style=for-the-badge" alt="challenge">
 </p>
 
 <p align="center">
@@ -23,6 +24,30 @@
   </a>
 </p>
 
-<p align="center">
-  Made possible by <a href="https://certgames.com"><b>CertGames</b></a>
-</p>
+---
+
+## About This Repo
+
+This is my 100 Days of Building Cybersecurity Projects challenge — one project at a time, every day, building real security tools from the ground up. No filler, no theory-only content: everything here is something I actually built, broke, fixed, and learned from along the way. Follow along as I go from foundational scripts to more advanced security engineering work.
+
+**Progress:** Day 1 / 100
+
+---
+
+## Progress Tracker
+
+| Day | Project | Language | Date | Status |
+|-----|---------|----------|------|--------|
+| 001 | | | | 🚧 In Progress |
+| 002 | | | | ⬜ Not Started |
+| 003 | | | | ⬜ Not Started |
+| 004 | | | | ⬜ Not Started |
+| 005 | | | | ⬜ Not Started |
+
+> Update this table as each day's project is completed. Link the project name to its folder once it's built (e.g. `[Hash Identifier](./day-001-hash-identifier)`).
+
+---
+
+## Made possible by
+
+[CertGames](https://certgames.com)
