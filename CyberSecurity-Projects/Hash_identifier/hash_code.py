@@ -58,8 +58,10 @@ class HashType:
     notes: str = ""
 
 
-# Ordered roughly from "most specific / self-announcing" to
-# "least specific / length-only guesses". Prefix matches are checked. 
+
+#here we define a list of known hash types, each represented by a HashType dataclass instance. 
+# This list is used to identify the type of a given hash string based on its characteristics 
+# such as prefix, length, and character set.
 KNOWN_HASHES: list[HashType] = [
     HashType(
         name="bcrypt",
@@ -160,3 +162,125 @@ KNOWN_HASHES: list[HashType] = [
         hashcat_mode="1700",
     ),
 ]
+
+
+@dataclass
+class Match:
+    hash_type: HashType
+    confidence: confidence
+    reason: str
+
+
+def _looks_like_jwt(value: str) -> bool:
+    """JSON Web Tokens are NOT hashes, but they're commonly mistaken for one."""
+    parts = value.split(".")
+    return len(parts) == 3 and all(BASE64URL_CHARS.issuperset(p) for p in parts if p)
+
+
+def _matches_charset(value: str, charset: frozenset[str]) -> bool:
+    return all(c in charset for c in value)
+
+
+def identify(value: str) -> list[Match]:
+    """Return a list of plausible hash types for the given string, most
+    confident first."""
+    value = value.strip()
+    matches: list[Match] = []
+
+    if _looks_like_jwt(value):
+        matches.append(
+            Match(
+                hash_type=HashType(
+                    name="JWT (not a hash)",
+                    description="A JSON Web Token — three base64url segments separated by dots. "
+                    "Structured and decodable, not a one-way hash.",
+                ),
+                confidence="high",
+                reason="Matches the header.payload.signature JWT structure.",
+            )
+        )
+        return matches
+
+#The dataclass package help users to create classes that are primarily used to store data with less boilerplate code. 
+# In this case, the Match class is defined as a dataclass, which automatically generates special 
+# methods like __init__(), __repr__(), and __eq__() based on the class attributes. 
+# This makes it easier to create instances of Match and work with them in a more structured way.
+
+# 1. Prefix matches are the strongest signal — check these first.
+    for h in KNOWN_HASHES:
+        if h.prefixes and value.startswith(h.prefixes):
+            matches.append(
+                Match(
+                    hash_type=h,
+                    confidence="high",
+                    reason=f"Starts with a known prefix for {h.name}.",
+                )
+            )
+
+    if matches:
+        return matches
+
+    # 2. No prefix matched — fall back to length + charset.
+    for h in KNOWN_HASHES:
+        if h.length is None:
+            continue
+        if len(value) == h.length and _matches_charset(value, h.charset):
+            confidence: confidence = "medium" if h.charset is HEX_CHARS else "low"
+            matches.append(
+                Match(
+                    hash_type=h,
+                    confidence=confidence,
+                    reason=f"Length {h.length} and charset match {h.name}.",
+                )
+            )
+
+    return matches
+
+
+def render(value: str, matches: list[Match]) -> None:
+    console = Console()
+    if not matches:
+        console.print(
+            f"[bold red]No idea[/] — '{value}' doesn't match any known hash "
+            "pattern by prefix, length, or charset."
+        )
+        return
+
+    table = Table(title=f"Possible matches for: {value}")
+    table.add_column("Hash Type", style="cyan", no_wrap=True)
+    table.add_column("Confidence")
+    table.add_column("Hashcat Mode")
+    table.add_column("Reason")
+
+    confidence_style = {"high": "bold green", "medium": "yellow", "low": "dim"}
+
+    for m in matches:
+        table.add_row(
+            m.hash_type.name,
+            f"[{confidence_style.get(m.confidence, '')}]{m.confidence}[/]",
+            m.hash_type.hashcat_mode or "-",
+            m.reason,
+        )
+
+    console.print(table)
+    if len(matches) == 1 and matches[0].hash_type.notes:
+        console.print(f"[dim]{matches[0].hash_type.notes}[/]")
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        prog="hash-identifier",
+        description="Guess what algorithm produced a given hash string.",
+    )
+    parser.add_argument("value", help="the hash string to identify")
+    args = parser.parse_args(argv)
+
+    matches = identify(args.value)
+    render(args.value, matches)
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
+
+
