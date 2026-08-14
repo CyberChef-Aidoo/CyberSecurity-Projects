@@ -161,6 +161,12 @@ KNOWN_HASHES: list[HashType] = [
         length=128,
         hashcat_mode="1700",
     ),
+    HashType(
+            name="sample",
+            description="Sample hash type for demonstration purposes.",
+            length=128,
+            hashcat_mode="1700",
+        ),
 ]
 
 
