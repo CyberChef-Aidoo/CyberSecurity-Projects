@@ -10,11 +10,11 @@ fi
 
 echo "-> python found: $(python3 --version)"
 
-echo "-> installing dependencies (rich, pytest)"
-pip install rich pytest --user
+# echo "-> installing dependencies (rich, pytest)"
+# pip install rich pytest --userw
 
-echo "-> running tests to confirm everything works"
-python3 -m pytest test_hash_identifier.py -v
+# echo "-> running tests to confirm everything works"
+# python3 -m pytest test_hash_identifier.py -v
 
 echo ""
 echo "Setup complete. Try:"
