@@ -1,0 +1,21 @@
+default:
+    @just --list
+
+# Run the tool. Usage: just run -- <url>
+run *ARGS:
+    python3 http_headers_scanner.py {{ARGS}}
+
+# Run the test suite
+test:
+    python3 -m pytest test_http_headers_scanner.py -v
+
+# Lint the code
+lint:
+    ruff check .
+    mypy http_headers_scanner.py
+
+# Auto-format the code
+format:
+    ruff format .
+
+check: lint test
