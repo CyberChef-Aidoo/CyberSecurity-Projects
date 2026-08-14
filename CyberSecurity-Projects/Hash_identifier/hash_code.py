@@ -167,7 +167,7 @@ KNOWN_HASHES: list[HashType] = [
 @dataclass
 class Match:
     hash_type: HashType
-    confidence: confidence
+    confidence: Confidence
     reason: str
 
 
@@ -225,7 +225,7 @@ def identify(value: str) -> list[Match]:
         if h.length is None:
             continue
         if len(value) == h.length and _matches_charset(value, h.charset):
-            confidence: confidence = "medium" if h.charset is HEX_CHARS else "low"
+            confidence: Confidence = "medium" if h.charset is HEX_CHARS else "low"
             matches.append(
                 Match(
                     hash_type=h,
