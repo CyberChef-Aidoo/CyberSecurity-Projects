@@ -18,7 +18,7 @@ from rich import print
 import string
 
 #this block defines a type alias for the confidence levels that can be assigned to hash identifications, allowing for clearer and more maintainable code when working with these confidence levels.
-confidence = Literal["high", "medium", "low"]
+Confidence = Literal["high", "medium", "low"]
 
 
 try:
