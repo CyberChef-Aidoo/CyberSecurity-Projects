@@ -34,7 +34,7 @@ This is my 100 Days of Building Cybersecurity Projects challenge — one project
 
 | Day | Project | Language | Date | Status |
 |-----|---------|----------|------|--------|
-| 001 |HashType Identifier | Python, Bash| 12th August,2025| DONE👏 |
+| 001 |HashType Identifier | Python, Bash| 12th August,20 DONE👏 |
 | 002 | | | | ⬜ Not Started |
 | 003 | | | | ⬜ Not Started |
 | 004 | | | | ⬜ Not Started |
