@@ -1,18 +1,23 @@
-#This is the package for 
+#These are the necessary imports for the program to function correctly. 
+
+#This is for parsing command-line arguments.
 import argparse
 #This is for regular expression
 import re
 #This is for system interaction
 import sys
-#This is for data classes default boilaterplate
+#This is for data classes default boilerplate
 from dataclasses import dataclass
 #This is for typing hints.
 from typing import Literal
 #this is for making HTTP requests.
-# import httpx
+import requests
 #this is for rich text formatting or colorful output in the terminal.
 from rich.console import Console
 #this is for creating panels in the terminal output.
 from rich.panel import Panel
 #This is for creating tables in the terminal output.
 from rich.table import Table
+
+
+
