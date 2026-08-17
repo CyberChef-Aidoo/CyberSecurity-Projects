@@ -19,5 +19,7 @@ from rich.panel import Panel
 #This is for creating tables in the terminal output.
 from rich.table import Table
 
-
-
+'''This indicates that the Severity type can only take one of the four specified 
+string values: "high "medium", "low", or "info". This is useful for type checking and 
+ensuring that only valid severity levels are used in the code.'''
+Severity = Literal["high", "medium", "low", "info"]
