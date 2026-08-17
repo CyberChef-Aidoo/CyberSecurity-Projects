@@ -9,7 +9,7 @@ from dataclasses import dataclass
 #This is for typing hints.
 from typing import Literal
 #this is for making HTTP requests.
-import httpx
+# import httpx
 #this is for rich text formatting or colorful output in the terminal.
 from rich.console import Console
 #this is for creating panels in the terminal output.
