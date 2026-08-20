@@ -23,3 +23,68 @@ from rich.table import Table
 string values: "high "medium", "low", or "info". This is useful for type checking and 
 ensuring that only valid severity levels are used in the code.'''
 Severity = Literal["high", "medium", "low", "info"]
+
+@dataclass(frozen=True)
+class HeaderCheck:
+    name: str
+    description: str
+    severity: Severity
+    recommendation: str
+
+
+SECURITY_HEADERS: list[HeaderCheck] = [
+    HeaderCheck(
+    name="Strict-Transport-Security",
+    description="Forces browsers to only ever connect over HTTPS, even if a "
+    "user types http:// or clicks an old http:// link. Without it, "
+    "the very first request to a site can be intercepted before it "
+    "gets upgraded to HTTPS.",
+    severity="high",
+    recommendation="Strict-Transport-Security: max-age=63072000; includeSubDomains; preload",
+    ),
+    HeaderCheck(
+    name="Content-Security-Policy",
+    description="Restricts which sources of scripts, styles, images, etc. the "
+    "browser is allowed to load. The single strongest defense against "
+    "cross-site scripting (XSS).",
+    severity="high",
+    recommendation="Content-Security-Policy: default-src 'self'",
+    ),
+    HeaderCheck(
+    name="X-Frame-Options",
+    description="Prevents the page from being loaded inside an <iframe> on "
+    "another site — stops clickjacking attacks where a malicious "
+    "site invisibly overlays your page to trick users into clicking "
+    "something they didn't mean to.",
+    severity="medium",
+    recommendation="X-Frame-Options: DENY",
+    ),
+    HeaderCheck(
+    name="X-Content-Type-Options",
+    description="Stops the browser from trying to 'guess' a file's type "
+    "(MIME sniffing). Without it, a file uploaded as an image could "
+    "potentially be executed as a script in some older browsers.",
+    severity="medium",
+    recommendation="X-Content-Type-Options: nosniff",
+    ),
+    HeaderCheck(
+    name="Referrer-Policy",
+    description="Controls how much of the current page's URL gets sent along "
+    "in the Referer header when a user clicks a link to another "
+    "site. Without it, sensitive info in URLs (like session tokens "
+    "in query strings) can leak to third parties.",
+    severity="low",
+    recommendation="Referrer-Policy: strict-origin-when-cross-origin",
+    ),
+    HeaderCheck(
+    name="Permissions-Policy",
+    description="Lets a site explicitly disable browser features it doesn't "
+    "need (camera, microphone, geolocation, etc.), reducing what an "
+    "attacker could abuse via injected code.",
+    severity="low",
+    recommendation="Permissions-Policy: geolocation=(), camera=(), microphone=()",
+    ),
+
+]
+
+
