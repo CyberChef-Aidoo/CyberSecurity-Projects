@@ -88,3 +88,8 @@ SECURITY_HEADERS: list[HeaderCheck] = [
 ]
 
 
+@dataclass
+class Finding:
+    check: HeaderCheck
+    present: bool
+    value: str | None
