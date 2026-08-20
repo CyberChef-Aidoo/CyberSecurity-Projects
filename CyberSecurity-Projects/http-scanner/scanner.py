@@ -23,3 +23,32 @@ from rich.table import Table
 string values: "high "medium", "low", or "info". This is useful for type checking and 
 ensuring that only valid severity levels are used in the code.'''
 Severity = Literal["high", "medium", "low", "info"]
+
+@dataclass(frozen=True)
+class HeaderCheck:
+    name: str
+    description: str
+    severity: Severity
+    suggestion: str
+
+
+SECURITY_HEADERS: list[HeaderCheck] = [
+    HeaderCheck(
+        name="X-Content-Type-Options",
+        description="Prevents MIME type sniffing",
+        severity="high",
+        suggestion="Add 'X-Content-Type-Options: nosniff' to the response headers."
+    ),
+    HeaderCheck(
+        name="X-Frame-Options",
+        description="Prevents clickjacking attacks",
+        severity="high",
+        suggestion="Add 'X-Frame-Options: DENY' to the response headers."
+    ),
+    HeaderCheck(
+        name="X-XSS-Protection",
+        description="Enables XSS filtering",
+        severity="medium",
+        suggestion="Add 'X-XSS-Protection: 1; mode=block' to the response headers."
+    )
+]
