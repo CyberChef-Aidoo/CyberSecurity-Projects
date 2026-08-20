@@ -35,7 +35,7 @@ This is my 100 Days of Building Cybersecurity Projects challenge — one project
 | Day | Project | Language | Date | Status |
 |-----|---------|----------|------|--------|
 | 001 |HashType Identifier | Python, Bash| 12th August,2025| DONE👏 |
-| 002 | HTT Header Scanner|Python |19TH AUGUST,2026 | IN PROGESS |
+| 002 | HTT_Header Scanner|Python |19TH AUGUST,2026 | IN PROGESS |
 | 003 | | | | ⬜ Not Started |
 | 004 | | | | ⬜ Not Started |
 | 005 | | | | ⬜ Not Started |
