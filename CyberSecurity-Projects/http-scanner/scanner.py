@@ -93,3 +93,5 @@ class Finding:
     check: HeaderCheck
     present: bool
     value: str | None
+
+    
