@@ -104,3 +104,6 @@ def fetch_header(url: str, timeout: float = 10.0, auto_redirect: bool = True) ->
 
         return dict(response.headers)
 
+
+def analyse(headers = dict[str,str]) -> list[Finding]:
+     
