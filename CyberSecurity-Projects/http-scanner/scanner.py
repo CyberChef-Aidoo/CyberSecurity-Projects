@@ -10,6 +10,7 @@ import sys
 from dataclasses import dataclass
 #This is for typing hints.
 from typing import Literal
+from urllib import response
 #this is for making HTTP requests.
 import requests
 #this is for rich text formatting or colorful output in the terminal.
@@ -94,4 +95,8 @@ class Finding:
     present: bool
     value: str | None
 
-    
+def fetch_header(url: str, timeout: float = 10.0, auto_redirect: bool = True) -> dict[str,str]:
+        response  = requests.get(url = url, timeout = timeout, allow_redirects = auto_redirect)
+        
+        result=  dict[response, response]
+        return result
