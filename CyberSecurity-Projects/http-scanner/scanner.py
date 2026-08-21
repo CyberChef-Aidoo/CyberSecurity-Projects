@@ -97,6 +97,5 @@ class Finding:
 
 def fetch_header(url: str, timeout: float = 10.0, auto_redirect: bool = True) -> dict[str,str]:
         response  = requests.get(url = url, timeout = timeout, allow_redirects = auto_redirect)
-        
-        result=  dict[response, response]
-        return result
+
+        return dict(response.headers)
