@@ -97,5 +97,10 @@ class Finding:
 
 def fetch_header(url: str, timeout: float = 10.0, auto_redirect: bool = True) -> dict[str,str]:
         response  = requests.get(url = url, timeout = timeout, allow_redirects = auto_redirect)
+        """
+        Fetch a URL and return its response headers.
+        The -> dict[str, str] indicates that the function returns a dictionary where both keys and values are strings. 
+        """
 
         return dict(response.headers)
+
