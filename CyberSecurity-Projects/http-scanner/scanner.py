@@ -106,4 +106,17 @@ def fetch_header(url: str, timeout: float = 10.0, auto_redirect: bool = True) ->
 
 
 def analyse(headers = dict[str,str]) -> list[Finding]:
+     lowercase_headers = {k.lower(): v for k, v in headers.items()}
      
+     findings: list[Finding] = []
+     for check in SECURITY_HEADERS:
+        key = check.name.lower()
+        present = key in lowercase_headers
+        findings.append(
+            Finding(
+                check=check,
+                present=present,
+                actual_value=lowercase_headers.get(key),
+            )
+        )
+    return findings
