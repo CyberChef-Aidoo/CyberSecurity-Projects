@@ -10,6 +10,7 @@ import sys
 from dataclasses import dataclass
 #This is for typing hints.
 from typing import Literal
+from urllib import response
 #this is for making HTTP requests.
 import requests
 #this is for rich text formatting or colorful output in the terminal.
@@ -88,3 +89,34 @@ SECURITY_HEADERS: list[HeaderCheck] = [
 ]
 
 
+@dataclass
+class Finding:
+    check: HeaderCheck
+    present: bool
+    value: str | None
+
+def fetch_header(url: str, timeout: float = 10.0, auto_redirect: bool = True) -> dict[str,str]:
+        response  = requests.get(url = url, timeout = timeout, allow_redirects = auto_redirect)
+        """
+        Fetch a URL and return its response headers.
+        The -> dict[str, str] indicates that the function returns a dictionary where both keys and values are strings. 
+        """
+
+        return dict(response.headers)
+
+
+def analyse(headers = dict[str,str]) -> list[Finding]:
+     lowercase_headers = {k.lower(): v for k, v in headers.items()}
+     
+     findings: list[Finding] = []
+     for check in SECURITY_HEADERS:
+        key = check.name.lower()
+        present = key in lowercase_headers
+        findings.append(
+            Finding(
+                check=check,
+                present=present,
+                actual_value=lowercase_headers.get(key),
+            )
+        )
+    return findings
