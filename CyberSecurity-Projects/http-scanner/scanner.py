@@ -120,3 +120,6 @@ def analyse(headers = dict[str,str]) -> list[Finding]:
             )
         )
     return findings
+
+def render(url: str, findings: list[Finding]) -> None:
+    console = Console()
